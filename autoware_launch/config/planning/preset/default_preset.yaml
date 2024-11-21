@@ -1,17 +1,14 @@
 launch:
   # behavior path modules
   - arg:
-      name: launch_static_obstacle_avoidance
+      name: launch_avoidance_module
       default: "true"
   - arg:
       name: launch_avoidance_by_lane_change_module
       default: "true"
   - arg:
-      name: launch_dynamic_obstacle_avoidance
+      name: launch_dynamic_avoidance_module
       default: "false"
-  - arg:
-      name: launch_sampling_planner_module
-      default: "false" # Warning, experimental module, use only in simulations
   - arg:
       name: launch_lane_change_right_module
       default: "true"
@@ -32,6 +29,9 @@ launch:
       default: "true"
   - arg:
       name: launch_side_shift_module
+      default: "true"
+  - arg:
+      name: use_experimental_lane_change_function
       default: "true"
 
   # behavior velocity modules
@@ -75,6 +75,9 @@ launch:
       name: launch_speed_bump_module
       default: "false"
   - arg:
+      name: launch_out_of_lane_module
+      default: "true"
+  - arg:
       name: launch_no_drivable_lane_module
       default: "false"
 
@@ -87,31 +90,20 @@ launch:
 
   - arg:
       name: motion_path_planner_type
-      default: path_optimizer
-      # option: path_optimizer
+      default: obstacle_avoidance_planner
+      # option: obstacle_avoidance_planner
       #         path_sampler
       #         none
 
-  # motion velocity planner modules
-  - arg:
-      name: launch_dynamic_obstacle_stop_module
-      default: "true"
-  - arg:
-      name: launch_out_of_lane_module
-      default: "true"
-  - arg:
-      name: launch_obstacle_velocity_limiter_module
-      default: "true"
-
   - arg:
       name: motion_stop_planner_type
-      default: obstacle_cruise_planner
+      default: obstacle_stop_planner
       # option: obstacle_stop_planner
       #         obstacle_cruise_planner
       #         none
 
   - arg:
-      name: velocity_smoother_type
+      name: motion_velocity_smoother_type
       default: JerkFiltered
       # option: JerkFiltered
       #         L2
@@ -120,7 +112,7 @@ launch:
 
   - arg:
       name: launch_surround_obstacle_checker
-      default: "false"
+      default: "true"
 
   # parking modules
   - arg:

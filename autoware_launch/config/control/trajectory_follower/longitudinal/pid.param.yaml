@@ -1,6 +1,6 @@
 /**:
   ros__parameters:
-    delay_compensation_time: 0.1
+    delay_compensation_time: 0.17
 
     enable_smooth_stop: true
     enable_overshoot_emergency: true
@@ -11,7 +11,7 @@
     # state transition
     drive_state_stop_dist: 0.5
     drive_state_offset_stop_dist: 1.0
-    stopping_state_stop_dist: 0.49
+    stopping_state_stop_dist: 0.5
     stopped_state_entry_duration_time: 0.1
     stopped_state_entry_vel: 0.01
     stopped_state_entry_acc: 0.1
@@ -53,16 +53,13 @@
 
     # stopped state
     stopped_vel: 0.0
-    stopped_acc: -3.4 # denotes pedal position
+    stopped_acc: -3.4
+    stopped_jerk: -5.0
 
     # emergency state
     emergency_vel: 0.0
-    emergency_acc: -5.0 # denotes acceleration
+    emergency_acc: -5.0
     emergency_jerk: -3.0
-
-    # acceleration feedback
-    lpf_acc_error_gain: 0.98
-    acc_feedback_gain: 0.0
 
     # acceleration limit
     max_acc: 3.0
@@ -71,11 +68,9 @@
     # jerk limit
     max_jerk: 2.0
     min_jerk: -5.0
-    max_acc_cmd_diff: 50.0 # [m/s^2 * s^-1]
 
-    # slope compensation
+    # pitch
+    use_trajectory_for_pitch_calculation: false
     lpf_pitch_gain: 0.95
-    slope_source: "raw_pitch" # raw_pitch, trajectory_pitch or trajectory_adaptive
-    adaptive_trajectory_velocity_th: 1.0
     max_pitch_rad: 0.1
     min_pitch_rad: -0.1
